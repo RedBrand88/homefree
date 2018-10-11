@@ -99,6 +99,10 @@ namespace HomeFree_Form
             monthlyPayment.Text = mortgagePayment.ToString("0.##");
         }
 
+        /// <summary>
+        /// resets the target house price form when
+        /// submited
+        /// </summary>
         public void resetForm()
         {
             salary.Text = "";
@@ -155,6 +159,11 @@ namespace HomeFree_Form
             else
             {
                 targetPrice = _monthlyBudget / fivePercentInterestAndThirtyYears;
+
+                if(preparedDownPayment.Text != "")
+                {
+                    targetPrice += _plannedDownPayment;
+                }
             }
 
             targetHousePrice.Text = targetPrice.ToString("0.##");
@@ -175,6 +184,34 @@ namespace HomeFree_Form
         {
             salary.Enabled = false;
             bonuses.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string plannedMonthlyPayment = payment.Text;
+            string totalPayments = yearsToPayBack.Text;
+            string totalPrinciple = loanSize.Text;
+
+            double _totalMoneyPaid;
+            double _plannedMonthlyPayment;
+            int _totalPayments;
+            double _totalInterestPaid;
+            double _totalPrinciple;
+
+            Double.TryParse(plannedMonthlyPayment, out _plannedMonthlyPayment);
+            int.TryParse(totalPayments, out _totalPayments);
+            Double.TryParse(totalPrinciple, out _totalPrinciple);
+
+            if(yearsToPayBack.Text != "")
+            {
+                _totalPayments = setMonths(_totalPayments);
+            }
+
+            _totalMoneyPaid = _plannedMonthlyPayment * _totalPayments;
+            _totalInterestPaid = _totalMoneyPaid - _totalPrinciple;
+
+            totalInterestPaid.Text = _totalInterestPaid.ToString("0.##");
+            totalMoneyPaid.Text = _totalMoneyPaid.ToString("0.##");
         }
     }
 }
