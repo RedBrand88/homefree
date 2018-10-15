@@ -7,24 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LoanCalculator;
 
 namespace HomeFree_Form
 {
     public partial class Form1 : Form
     {
-        private string yearsInMonths;
-        private string monthlyInterestRate;
-        private string initialLoan;
-        private string moneyDown;
-        private string insuranceUtiliesExtra;
-        private double mortgagePayment;
-
         private string yearlySalary;
         private string yearlyBonuses;
         private string monthlyBudet;
         private string plannedDownPayment;
         private string assumedCreditScore;
         private double targetPrice;
+        private Calculator myCalculator;
 
         /// <summary>
         /// form constructor
@@ -32,88 +27,30 @@ namespace HomeFree_Form
         public Form1()
         {
             InitializeComponent();
+            myCalculator = new Calculator();
         }
 
         /// <summary>
-        /// converts years into months
-        /// </summary>
-        /// <param name="years"></param>
-        /// <returns>int</returns>
-        public int setMonths(int years)
-        {
-            const int MONTHSINAYEAR = 12;
-            return years * MONTHSINAYEAR;
-        }
-
-        /// <summary>
-        /// converts yearly percent to a monthly percent
-        /// </summary>
-        /// <param name="interestRate"></param>
-        /// <returns>double</returns>
-        public double setMonthlyInterest(double interestRate)
-        {
-            const int MONTHSINAYEAR = 12;
-            const int PERCENT = 100;
-            return (interestRate / PERCENT) / MONTHSINAYEAR;
-        }
-
-        /// <summary>
-        /// calculates a monthly payment for a given loan amount
+        /// Calls calculator to set monthly payment amount
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void submitMonthlyPayment_Click(object sender, EventArgs e)
         {
-            monthlyInterestRate = interestRate.Text;
-            yearsInMonths = yearsToPay.Text;
-            moneyDown = downPayment.Text;
-            insuranceUtiliesExtra = insuranceUtilities.Text;
-            initialLoan = principal.Text;
+            double down, princ, rate, insurance;
+            int years;
 
-            double _monthlyInterestRate = Double.Parse(monthlyInterestRate);
-            int _yearsInMonths = int.Parse(yearsInMonths);
-            double _initialLoan = Double.Parse(initialLoan);
-            double placeholder;
-            double interestPlusOne;
+            Double.TryParse(downPayment.Text, out down);
+            Double.TryParse(principal.Text, out princ);
+            Double.TryParse(interestRate.Text, out rate);
+            int.TryParse(yearsToPay.Text, out years);
+            Double.TryParse(insuranceUtilities.Text, out insurance);
 
-            _monthlyInterestRate = setMonthlyInterest(_monthlyInterestRate);
-            _yearsInMonths = setMonths(_yearsInMonths);
+            myCalculator.SetLoanObject(down, princ, rate, years, insurance);
 
-            interestPlusOne = 1 + _monthlyInterestRate;
-            interestPlusOne = Math.Pow(interestPlusOne, _yearsInMonths);
-            placeholder = interestPlusOne * _monthlyInterestRate;
-            placeholder = placeholder / (interestPlusOne - 1);
-
-            if (downPayment.Text != "")
-            {
-                _initialLoan -= Double.Parse(downPayment.Text);
-            }
-
-            mortgagePayment = _initialLoan * placeholder;
-
-            if (insuranceUtilities.Text != "")
-            {
-                mortgagePayment += Double.Parse(insuranceUtilities.Text);
-            }
-
-            monthlyPayment.Text = mortgagePayment.ToString("0.##");
+            monthlyPayment.Text = myCalculator.MonthlyPayment().ToString("0.##");
         }
 
-        /// <summary>
-        /// resets the target house price form when
-        /// submited
-        /// </summary>
-        public void resetForm()
-        {
-            salary.Text = "";
-            bonuses.Text = "";
-            budget.Text = "";
-            preparedDownPayment.Text = "";
-            creditScore.Text = "";
-            budget.Enabled = true;
-            bonuses.Enabled = true;
-            salary.Enabled = true;
-        }
 
         /// <summary>
         /// calculates target home price based on income + bonuses or a target monthly budget
@@ -170,22 +107,6 @@ namespace HomeFree_Form
             resetForm();
         }
 
-        private void salary_TextChanged(object sender, EventArgs e)
-        {
-            budget.Enabled = false;
-        }
-
-        private void bonuses_TextChanged(object sender, EventArgs e)
-        {
-            budget.Enabled = false;
-        }
-
-        private void budget_TextChanged(object sender, EventArgs e)
-        {
-            salary.Enabled = false;
-            bonuses.Enabled = false;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string plannedMonthlyPayment = payment.Text;
@@ -204,7 +125,7 @@ namespace HomeFree_Form
 
             if(yearsToPayBack.Text != "")
             {
-                _totalPayments = setMonths(_totalPayments);
+                //_totalPayments = setMonths(_totalPayments);
             }
 
             _totalMoneyPaid = _plannedMonthlyPayment * _totalPayments;
@@ -213,5 +134,38 @@ namespace HomeFree_Form
             totalInterestPaid.Text = _totalInterestPaid.ToString("0.##");
             totalMoneyPaid.Text = _totalMoneyPaid.ToString("0.##");
         }
+
+        private void salary_TextChanged(object sender, EventArgs e)
+        {
+            budget.Enabled = false;
+        }
+
+        private void bonuses_TextChanged(object sender, EventArgs e)
+        {
+            budget.Enabled = false;
+        }
+
+        private void budget_TextChanged(object sender, EventArgs e)
+        {
+            salary.Enabled = false;
+            bonuses.Enabled = false;
+        }
+
+        /// <summary>
+        /// resets the target house price form when
+        /// submited
+        /// </summary>
+        public void resetForm()
+        {
+            salary.Text = "";
+            bonuses.Text = "";
+            budget.Text = "";
+            preparedDownPayment.Text = "";
+            creditScore.Text = "";
+            budget.Enabled = true;
+            bonuses.Enabled = true;
+            salary.Enabled = true;
+        }
+
     }
 }

@@ -6,45 +6,53 @@ using System.Threading.Tasks;
 
 namespace LoanCalculator
 {
-    class Calculator : ICalculator
+    public class Calculator : ICalculator
     {
-        const int MONTHS = 12;
+        const int MONTHS_IN_YEAR = 12;
         const int CONVERT_PERCENT = 100;
         int months;
         double rate;
         ILoan loan;
         IHowMuchHouse howMuchHouse;
         ILoanPayOff loanPayOff;
-        //field that holds form here
+        LoanObjectModel loanObj;
 
-        Calculator()
+        public Calculator()
         {
             loan = new Loan();
             howMuchHouse = new HowMuchHouse();
             loanPayOff = new LoanPayOff();
+            loanObj = new LoanObjectModel();
         }
 
-        public int setMonths(int years)
+        public int SetMonths(int years)
         {
-            months = years * MONTHS;
-            return months;
+            return years * MONTHS_IN_YEAR;
         }
 
-        public double setMonthlyInterest(double percent)
+        public double SetMonthlyInterest(double rate)
         {
-            rate = percent / CONVERT_PERCENT;
-            rate /= MONTHS;
-            return rate;
+            //test for order of operations
+            return rate / 100 / MONTHS_IN_YEAR;
         }
 
-        public void resetForm()
+        public double MonthlyPayment()
         {
-            //refrence form and reset here
+            return loan.MonthlyPayment(loanObj);
         }
 
-        public void setVariables()
+        public double HowMuchHouseCanIAfford()
         {
-            //set variables with user input
+            return howMuchHouse.findHousePrice(profile);
+        }
+
+        public void SetLoanObject(double down, double principal, double yearlyRate, int years, double utilities)
+        {
+            loanObj.downPayment = down;
+            loanObj.principal = principal;
+            loanObj.rate = yearlyRate;
+            loanObj.years = years;
+            loanObj.interest_Utilities = utilities;
         }
     }
 }

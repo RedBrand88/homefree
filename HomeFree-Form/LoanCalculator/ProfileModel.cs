@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoanCalculator
 {
-    public interface ICalculator
+    class ProfileModel
     {
-        int SetMonths(int years);
-        double SetMonthlyInterest(double rate);
     }
 }

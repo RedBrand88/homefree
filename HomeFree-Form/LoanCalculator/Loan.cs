@@ -8,14 +8,37 @@ namespace LoanCalculator
 {
     class Loan : ILoan
     {
-        double payment;
+        const int MONTHS_IN_YEAR = 12;
+        const int HUNDRED = 100;
+        int months;
+        double monthlyRate;
 
-        public double monthlyPayment(double principle, double rate, int months, double downPay, double extra)
+        public int SetMonths(int years)
         {
-            principle -= downPay;
-            payment = principle * (rate * Math.Pow((1 + rate), months) / Math.Pow((1 + rate), months) - 1);
-            payment += extra;
-            return payment;
+            return years * MONTHS_IN_YEAR;
+        }
+
+        public double SetMonthlyInterest(double rate)
+        {
+            return rate / HUNDRED / MONTHS_IN_YEAR;
+        }
+
+        public double MonthlyPayment(LoanObjectModel loan)
+        {
+            double intermediate;
+
+            months = SetMonths(loan.years);
+            monthlyRate = SetMonthlyInterest(loan.rate);
+            loan.principal -= loan.downPayment;
+            monthlyRate += 1;
+            intermediate = Math.Pow(monthlyRate, months);
+            monthlyRate -= 1;
+            loan.monthlyPayment = monthlyRate * intermediate;
+            intermediate -= 1;
+            loan.monthlyPayment /= intermediate;
+            loan.monthlyPayment *= loan.principal;
+            loan.monthlyPayment += loan.interest_Utilities;
+            return loan.monthlyPayment;
         }
     }
 }

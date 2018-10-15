@@ -78,5 +78,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoanCalculator\LoanCalculator.csproj">
+      <Project>{ed25dc6d-4f1d-4640-ad91-a78e2927bcd0}</Project>
+      <Name>LoanCalculator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

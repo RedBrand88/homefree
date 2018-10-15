@@ -8,6 +8,6 @@ namespace LoanCalculator
 {
     interface ILoan
     {
-        double monthlyPayment(double p, double r, int m, double dp, double ex);
+        double MonthlyPayment(LoanObjectModel loan);
     }
 }
