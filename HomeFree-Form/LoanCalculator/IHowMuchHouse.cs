@@ -8,7 +8,7 @@ namespace LoanCalculator
 {
     interface IHowMuchHouse
     {
-        double findHousePrice(double dp);
+        double findHousePrice(ProfileModel profile);
         void setRate(int cs);
     }
 }

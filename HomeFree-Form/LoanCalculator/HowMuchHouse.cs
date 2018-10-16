@@ -13,6 +13,11 @@ namespace LoanCalculator
         double ratio;
         double monthly;
 
+        public HowMuchHouse()
+        {
+            this.setRate(0);
+        }
+
         /// <summary>
         /// function will be built
         /// sets interest rate based
@@ -21,17 +26,18 @@ namespace LoanCalculator
         /// <param name="creditScore"></param>
         public void setRate(int creditScore)
         {
-            rate = 5 / 100 / 12;
+            rate = 5.0 / 100.0 / 12.0;            
         }
 
         public void setRatio(double rate)
         {
-            ratio = rate * (Math.Pow((1 + rate), 360) / Math.Pow((1 + rate), 360) - 1);
+            double firstStep = Math.Pow((rate + 1.0), 360.0);
+            ratio = rate * firstStep / (firstStep - 1);
         }
 
         public void setMonthlyByIncome(double income, double bonuses)
         {
-            monthly = (income + bonuses) * .25;
+            monthly = (income + bonuses) * .25 / 12.0;
         }
 
         public void setMonthlyByBudget(double budget)
@@ -39,10 +45,22 @@ namespace LoanCalculator
             monthly = budget;
         }
 
-        public double findHousePrice(double downPay)
+        public double findHousePrice(ProfileModel profile)
         {
-            housePrice = (monthly / ratio) + downPay;
-            return housePrice;
+            setRate(profile.creditScore);
+            setRatio(rate);
+
+            if(profile.yearlyIncome == 0)
+            {
+                setMonthlyByBudget(profile.monthlyBudget);
+            }
+            else
+            {
+                setMonthlyByIncome(profile.yearlyIncome, profile.yearlyBonus);
+            }
+
+            profile.housePrice = (monthly / ratio) + profile.availableDownPayment;
+            return profile.housePrice;
         }
 
     }
