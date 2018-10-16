@@ -10,9 +10,9 @@ namespace LoanCalculator
     {
         double interest;
 
-        public double calcInterest(double payment, int months, double principle)
+        public double calcInterest(LoanObjectModel loan)
         {
-            interest = payment * months - principle;
+            interest = loan.monthlyPayment * loan.years - loan.principal;
             return interest;
         }
     }

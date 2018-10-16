@@ -8,6 +8,6 @@ namespace LoanCalculator
 {
     interface ILoanPayOff
     {
-        double calcInterest(double p, int m, double prin);
+        double calcInterest(LoanObjectModel loan);
     }
 }
