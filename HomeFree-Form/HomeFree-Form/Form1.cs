@@ -61,78 +61,36 @@ namespace HomeFree_Form
         {
             //math assumes interest rate of 5% yearly on a 30 year loan
             //this is based on a 25% of your yearly income rule
-            yearlySalary = salary.Text;
-            yearlyBonuses = bonuses.Text;
-            plannedDownPayment = preparedDownPayment.Text;
-            monthlyBudet = budget.Text;
-            assumedCreditScore = creditScore.Text;
+            double income, bonus, budget1, down;
+            int credit;
 
-            double _yearlySalary;
-            double _yearlyBonuses;
-            double _plannedDownPayment;
-            double _monthlyBudget;
-            int _assumedCreditScore;
+            Double.TryParse(salary.Text, out income);
+            Double.TryParse(bonuses.Text, out bonus);
+            Double.TryParse(budget.Text, out budget1);
+            Double.TryParse(preparedDownPayment.Text, out down);
+            int.TryParse(creditScore.Text, out credit);
 
-            Double.TryParse(yearlySalary, out _yearlySalary);
-            Double.TryParse(yearlyBonuses, out _yearlyBonuses);
-            Double.TryParse(plannedDownPayment, out _plannedDownPayment);
-            Double.TryParse(monthlyBudet, out _monthlyBudget);
-            int.TryParse(assumedCreditScore, out _assumedCreditScore);
+            myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
 
-            //based on the first half of the monthly mortgage equation
-            double fivePercentInterestAndThirtyYears = 0.0053682162301213979;
-
-            if (salary.Text != "")
-            {
-                if (bonuses.Text != "")
-                {
-                    _yearlySalary += _yearlyBonuses;
-                }
-
-                _yearlySalary = _yearlySalary * .25 / 12;
-
-                targetPrice = _yearlySalary / fivePercentInterestAndThirtyYears;
-            }
-            else
-            {
-                targetPrice = _monthlyBudget / fivePercentInterestAndThirtyYears;
-
-                if(preparedDownPayment.Text != "")
-                {
-                    targetPrice += _plannedDownPayment;
-                }
-            }
-
-            targetHousePrice.Text = targetPrice.ToString("0.##");
+            targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("0.##");
             resetForm();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void submitTotalPayoff_Click(object sender, EventArgs e)
         {
-            string plannedMonthlyPayment = payment.Text;
-            string totalPayments = yearsToPayBack.Text;
-            string totalPrinciple = loanSize.Text;
+            double princ, rate, extra, monthly;
+            int years;
 
-            double _totalMoneyPaid;
-            double _plannedMonthlyPayment;
-            int _totalPayments;
-            double _totalInterestPaid;
-            double _totalPrinciple;
+            //make SetLoanObject method that can set monthly payment
+            Double.TryParse(loanSize.Text, out princ);
+            Double.TryParse(rate1.Text, out rate);
+            int.TryParse(yearsToPayBack.Text, out years);
+            Double.TryParse(extraPayment.Text, out extra);
+            Double.TryParse(payment.Text, out monthly);
 
-            Double.TryParse(plannedMonthlyPayment, out _plannedMonthlyPayment);
-            int.TryParse(totalPayments, out _totalPayments);
-            Double.TryParse(totalPrinciple, out _totalPrinciple);
+            myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
 
-            if(yearsToPayBack.Text != "")
-            {
-                //_totalPayments = setMonths(_totalPayments);
-            }
-
-            _totalMoneyPaid = _plannedMonthlyPayment * _totalPayments;
-            _totalInterestPaid = _totalMoneyPaid - _totalPrinciple;
-
-            totalInterestPaid.Text = _totalInterestPaid.ToString("0.##");
-            totalMoneyPaid.Text = _totalMoneyPaid.ToString("0.##");
+            totalInterestPaid.Text = myCalculator.TotalMoneySpentOnLoan().ToString("0.##");
         }
 
         private void salary_TextChanged(object sender, EventArgs e)
