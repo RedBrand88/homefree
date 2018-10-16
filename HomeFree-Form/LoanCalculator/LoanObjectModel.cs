@@ -14,5 +14,6 @@ namespace LoanCalculator
         public int years { get; set; }
         public double interest_Utilities { get; set; }
         public double monthlyPayment { get; set; }
+        public double extraPayment { get; set; }
     }
 }
