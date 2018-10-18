@@ -50,5 +50,8 @@
     <Compile Include="LoanPayOff.cs" />
     <Compile Include="ProfileModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

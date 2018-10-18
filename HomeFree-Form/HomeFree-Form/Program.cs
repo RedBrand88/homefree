@@ -17,9 +17,10 @@ namespace HomeFree_Form
         [STAThread]
         static void Main()
         {
+            Form myForm = new Form1();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(myForm);
         }
     }
 }
