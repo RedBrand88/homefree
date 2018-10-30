@@ -13,16 +13,31 @@ namespace LoanCalculator
         int months;
         double monthlyRate;
 
+        /// <summary>
+        /// converts years to months
+        /// </summary>
+        /// <param name="years"></param>
+        /// <returns></returns>
         public int SetMonths(int years)
         {
             return years * MONTHS_IN_YEAR;
         }
 
+        /// <summary>
+        /// convert yearly interest to monthly interest
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         public double SetMonthlyInterest(double rate)
         {
             return rate / HUNDRED / MONTHS_IN_YEAR;
         }
 
+        /// <summary>
+        /// get mortgage payment
+        /// </summary>
+        /// <param name="loan"></param>
+        /// <returns></returns>
         public double MonthlyPayment(LoanObjectModel loan)
         {
             double intermediate;

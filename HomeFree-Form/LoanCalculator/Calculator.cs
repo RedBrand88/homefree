@@ -11,8 +11,6 @@ namespace LoanCalculator
     {
         const int MONTHS_IN_YEAR = 12;
         const int CONVERT_PERCENT = 100;
-        int months;
-        double rate;
         ILoan loan;
         IHowMuchHouse howMuchHouse;
         ILoanPayOff loanPayOff;

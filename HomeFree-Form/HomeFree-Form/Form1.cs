@@ -6,15 +6,7 @@ namespace HomeFree_Form
 {
     public partial class Form1 : Form
     {
-        private string yearlySalary;
-        private string yearlyBonuses;
-        private string monthlyBudet;
-        private string plannedDownPayment;
-        private string assumedCreditScore;
-        private double targetPrice;
         private Calculator myCalculator;
-
-        private Calculator calculator;
 
         /// <summary>
         /// form constructor
@@ -70,7 +62,12 @@ namespace HomeFree_Form
             targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("0.##");
             resetForm();
         }
-
+        
+        /// <summary>
+        /// Calculates Total interest paid over the life of the loan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void submitTotalPayoff_Click(object sender, EventArgs e)
         {
             double princ, rate, extra, monthly;
@@ -88,16 +85,31 @@ namespace HomeFree_Form
             totalInterestPaid.Text = myCalculator.TotalMoneySpentOnLoan().ToString("0.##");
         }
 
+        /// <summary>
+        /// Event that listens to salary field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void salary_TextChanged(object sender, EventArgs e)
         {
             budget.Enabled = false;
         }
 
+        /// <summary>
+        /// Event listener for the bonuses field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bonuses_TextChanged(object sender, EventArgs e)
         {
             budget.Enabled = false;
         }
 
+        /// <summary>
+        /// Event listener for the budget text field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void budget_TextChanged(object sender, EventArgs e)
         {
             salary.Enabled = false;
