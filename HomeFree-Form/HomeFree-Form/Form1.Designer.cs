@@ -73,6 +73,8 @@
             this.payment = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.totalInterestPaid = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.monthsSaved = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,7 +145,7 @@
             // 
             this.monthlyPayment.BackColor = System.Drawing.SystemColors.Window;
             this.monthlyPayment.Enabled = false;
-            this.monthlyPayment.Location = new System.Drawing.Point(24, 390);
+            this.monthlyPayment.Location = new System.Drawing.Point(24, 411);
             this.monthlyPayment.Name = "monthlyPayment";
             this.monthlyPayment.Size = new System.Drawing.Size(202, 20);
             this.monthlyPayment.TabIndex = 7;
@@ -187,7 +189,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 374);
+            this.label6.Location = new System.Drawing.Point(30, 395);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 13);
             this.label6.TabIndex = 12;
@@ -299,7 +301,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(296, 374);
+            this.label12.Location = new System.Drawing.Point(296, 395);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(108, 13);
             this.label12.TabIndex = 26;
@@ -309,7 +311,7 @@
             // 
             this.targetHousePrice.BackColor = System.Drawing.SystemColors.Window;
             this.targetHousePrice.Enabled = false;
-            this.targetHousePrice.Location = new System.Drawing.Point(290, 390);
+            this.targetHousePrice.Location = new System.Drawing.Point(290, 411);
             this.targetHousePrice.Name = "targetHousePrice";
             this.targetHousePrice.Size = new System.Drawing.Size(202, 20);
             this.targetHousePrice.TabIndex = 25;
@@ -440,11 +442,31 @@
             this.totalInterestPaid.Size = new System.Drawing.Size(202, 20);
             this.totalInterestPaid.TabIndex = 40;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(560, 436);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(76, 13);
+            this.label20.TabIndex = 43;
+            this.label20.Text = "Months Saved";
+            // 
+            // monthsSaved
+            // 
+            this.monthsSaved.BackColor = System.Drawing.SystemColors.Window;
+            this.monthsSaved.Enabled = false;
+            this.monthsSaved.Location = new System.Drawing.Point(554, 453);
+            this.monthsSaved.Name = "monthsSaved";
+            this.monthsSaved.Size = new System.Drawing.Size(202, 20);
+            this.monthsSaved.TabIndex = 42;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 520);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.monthsSaved);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.totalInterestPaid);
             this.Controls.Add(this.label13);
@@ -541,6 +563,8 @@
         private System.Windows.Forms.TextBox payment;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox totalInterestPaid;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox monthsSaved;
     }
 }
 

@@ -59,6 +59,10 @@ namespace LoanCalculator
             return loanPayOff.calcInterest(loanObj);
         }
 
+        public int FindMonthsSavedAfterExtraPayment() {
+            return loanPayOff.CalcMonthsSaved(loanObj);
+        }
+
         public void SetLoanObject(double down, double principal, double yearlyRate, int years, double utilities)
         {
             loanObj.downPayment = down;

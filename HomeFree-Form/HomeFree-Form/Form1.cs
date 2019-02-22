@@ -81,8 +81,12 @@ namespace HomeFree_Form
             Double.TryParse(payment.Text, out monthly);
 
             myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
+            double interest = myCalculator.TotalMoneySpentOnLoan();
 
-            totalInterestPaid.Text = myCalculator.TotalMoneySpentOnLoan().ToString("0.##");
+            totalInterestPaid.Text = interest.ToString("0.##");
+            interest += princ;
+            totalMoneyPaid.Text = interest.ToString("0.##");
+            monthsSaved.Text = myCalculator.FindMonthsSavedAfterExtraPayment().ToString("0.##");
         }
 
         /// <summary>
@@ -131,6 +135,5 @@ namespace HomeFree_Form
             bonuses.Enabled = true;
             salary.Enabled = true;
         }
-
     }
 }

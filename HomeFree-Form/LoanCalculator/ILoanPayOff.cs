@@ -9,5 +9,6 @@ namespace LoanCalculator
     interface ILoanPayOff
     {
         double calcInterest(LoanObjectModel loan);
+        int CalcMonthsSaved(LoanObjectModel loan);
     }
 }
