@@ -429,9 +429,9 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(560, 353);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 13);
+            this.label19.Size = new System.Drawing.Size(100, 13);
             this.label19.TabIndex = 41;
-            this.label19.Text = "Total Interest Paid";
+            this.label19.Text = "Total Money Saved";
             // 
             // totalInterestPaid
             // 

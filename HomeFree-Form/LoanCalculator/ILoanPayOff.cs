@@ -10,5 +10,6 @@ namespace LoanCalculator
     {
         double calcInterest(LoanObjectModel loan);
         int CalcMonthsSaved(LoanObjectModel loan);
+        double TotalAmountToBePaid(LoanObjectModel loan);
     }
 }

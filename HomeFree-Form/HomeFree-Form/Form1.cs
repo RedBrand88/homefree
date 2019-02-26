@@ -35,7 +35,7 @@ namespace HomeFree_Form
 
             myCalculator.SetLoanObject(down, princ, rate, years, insurance);
 
-            monthlyPayment.Text = myCalculator.MonthlyPayment().ToString("0.##");
+            monthlyPayment.Text = myCalculator.MonthlyPayment().ToString("#,0.##");
         }
 
 
@@ -59,7 +59,7 @@ namespace HomeFree_Form
 
             myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
 
-            targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("0.##");
+            targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("#,0.##");
             resetForm();
         }
         
@@ -83,10 +83,11 @@ namespace HomeFree_Form
             myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
             double interest = myCalculator.TotalMoneySpentOnLoan();
 
-            totalInterestPaid.Text = interest.ToString("0.##");
+            //totalInterestPaid.Text = interest.ToString("0.##");
             interest += princ;
-            totalMoneyPaid.Text = interest.ToString("0.##");
-            monthsSaved.Text = myCalculator.FindMonthsSavedAfterExtraPayment().ToString("0.##");
+            totalMoneyPaid.Text = interest.ToString("#,0.##");
+            monthsSaved.Text = myCalculator.FindMonthsSavedAfterExtraPayment().ToString("#,0.##");
+            totalInterestPaid.Text = myCalculator.FindMoneySavedAfterExtraPayment().ToString("#,0.##");
         }
 
         /// <summary>

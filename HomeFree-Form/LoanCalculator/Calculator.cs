@@ -63,6 +63,10 @@ namespace LoanCalculator
             return loanPayOff.CalcMonthsSaved(loanObj);
         }
 
+        public double FindMoneySavedAfterExtraPayment() {
+            return loanPayOff.TotalAmountToBePaid(loanObj);
+        }
+
         public void SetLoanObject(double down, double principal, double yearlyRate, int years, double utilities)
         {
             loanObj.downPayment = down;

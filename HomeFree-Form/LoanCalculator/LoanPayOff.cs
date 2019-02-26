@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace LoanCalculator {
     class LoanPayOff : ILoanPayOff {
+        double moneySaved = 0.00;
+        int monthsSaved = 0;
 
         /// <summary>
         /// convert yearly interest to monthly interest
@@ -66,8 +68,15 @@ namespace LoanCalculator {
                     break;
                 }
             }
+            monthsSaved = monthsRemaining;
 
             return monthsRemaining;
+        }
+
+        public double TotalAmountToBePaid(LoanObjectModel loan) {
+
+            moneySaved = monthsSaved * loan.monthlyPayment;
+            return moneySaved;
         }
     }
 }
