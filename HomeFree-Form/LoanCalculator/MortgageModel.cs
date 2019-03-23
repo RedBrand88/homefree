@@ -20,5 +20,6 @@ namespace LoanCalculator {
         public int Months { get; set; }
         public double DownPayment { get; set; }
         public double Taxes { get; set; }
+        public double MonthlyPayment { get; set; }
     }
 }
