@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator", "LoanCalcu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeFreeApi", "..\..\..\..\Users\Brandon\Source\Repos\HomeFreeApi\HomeFreeApi\HomeFreeApi.csproj", "{5A4143BD-FD0C-4B66-A402-4D3F87D2020C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeFree_Test", "HomeFree_Test\HomeFree_Test.csproj", "{6E62F6C1-EABA-4B39-9D39-43D4602598A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5A4143BD-FD0C-4B66-A402-4D3F87D2020C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A4143BD-FD0C-4B66-A402-4D3F87D2020C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A4143BD-FD0C-4B66-A402-4D3F87D2020C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E62F6C1-EABA-4B39-9D39-43D4602598A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E62F6C1-EABA-4B39-9D39-43D4602598A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E62F6C1-EABA-4B39-9D39-43D4602598A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E62F6C1-EABA-4B39-9D39-43D4602598A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

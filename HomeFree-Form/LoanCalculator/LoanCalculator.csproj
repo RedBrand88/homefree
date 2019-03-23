@@ -39,6 +39,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICalculation.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="HowMuchHouse.cs" />
@@ -48,6 +49,8 @@
     <Compile Include="Loan.cs" />
     <Compile Include="LoanObjectModel.cs" />
     <Compile Include="LoanPayOff.cs" />
+    <Compile Include="MortgageModel.cs" />
+    <Compile Include="MortgagePayment.cs" />
     <Compile Include="ProfileModel.cs" />
   </ItemGroup>
   <ItemGroup>
