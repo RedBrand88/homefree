@@ -44,6 +44,9 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="HowMuchHouse.cs" />
+    <Compile Include="IHasBudget.cs" />
+    <Compile Include="IHasEarlyPayoff.cs" />
+    <Compile Include="IHasMortgage.cs" />
     <Compile Include="IHowMuchHouse.cs" />
     <Compile Include="ILoan.cs" />
     <Compile Include="ILoanPayOff.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="LoanPayOff.cs" />
     <Compile Include="MortgageModel.cs" />
     <Compile Include="MortgagePayment.cs" />
+    <Compile Include="PayoffModel.cs" />
     <Compile Include="ProfileModel.cs" />
     <Compile Include="TotalInterest.cs" />
   </ItemGroup>
