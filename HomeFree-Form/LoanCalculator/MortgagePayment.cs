@@ -10,15 +10,20 @@ namespace LoanCalculator {
         }
 
         public double Algorithm() {
-            double rate = (Model.Rate / 100) / 12;
-            int mon = Model.Months * 12;
-            double prin = Model.Principle - Model.DownPayment;
-            double baseRatio = Math.Pow((1 + rate), mon);
+            Helper();
+            double baseRatio = Math.Pow((1 + Model.Rate), Model.Months);
             double baseRatioMinusOne = baseRatio - 1;
-            baseRatio *= rate;
-            double payment = prin * (baseRatio / baseRatioMinusOne);
+            baseRatio *= Model.Rate;
+            double payment = Model.Principle * (baseRatio / baseRatioMinusOne);
+            Model.MonthlyPayment = Math.Round(payment + Model.Taxes, 2);
 
-            return Math.Round(payment + Model.Taxes, 2);
+            return Model.MonthlyPayment;
+        }
+
+        public void Helper() {
+            Model.Rate = (Model.Rate / 100) / 12;
+            Model.Months *= 12;
+            Model.Principle -= Model.DownPayment;
         }
 
     }

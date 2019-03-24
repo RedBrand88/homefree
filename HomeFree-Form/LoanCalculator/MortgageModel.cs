@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LoanCalculator {
-    public class MortgageModel {
+    public class MortgageModel : IHasMortgage {
 
         public MortgageModel(double prin, double rat, int mon, double down, double tax) {
             Principle = prin;

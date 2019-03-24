@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 namespace LoanCalculator {
     public interface ICalculation {
         double Algorithm();
+        void Helper();
     }
 }

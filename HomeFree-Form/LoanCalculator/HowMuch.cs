@@ -9,5 +9,9 @@
         public double Algorithm() {
             return 0;
         }
+
+        public void Helper() {
+
+        }
     }
 }
