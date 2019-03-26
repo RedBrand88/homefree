@@ -6,7 +6,7 @@ namespace HomeFree_Form
 {
     public partial class Form1 : Form
     {
-        private Calculator myCalculator;
+        private Calculator MyCalculator { get; set; }
 
         /// <summary>
         /// form constructor
@@ -14,7 +14,6 @@ namespace HomeFree_Form
         public Form1()
         {
             InitializeComponent();
-            myCalculator = new Calculator();
         }
 
         /// <summary>
@@ -33,9 +32,12 @@ namespace HomeFree_Form
             int.TryParse(yearsToPay.Text, out years);
             Double.TryParse(insuranceUtilities.Text, out insurance);
 
-            myCalculator.SetLoanObject(down, princ, rate, years, insurance);
+            MyCalculator = new Calculator(new MortgagePayment(new MortgageModel(princ, rate, years, down, insurance)));
+            monthlyPayment.Text = MyCalculator.run().ToString("#,0.##");
 
-            monthlyPayment.Text = myCalculator.MonthlyPayment().ToString("#,0.##");
+            //myCalculator.SetLoanObject(down, princ, rate, years, insurance);
+
+            //monthlyPayment.Text = myCalculator.MonthlyPayment().ToString("#,0.##");
         }
 
 
@@ -57,9 +59,12 @@ namespace HomeFree_Form
             Double.TryParse(preparedDownPayment.Text, out down);
             int.TryParse(creditScore.Text, out credit);
 
-            myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
+            MyCalculator = new Calculator(new HowMuch(new HowMuchModel()));
+            targetHousePrice.Text = MyCalculator.run().ToString("#,0.##");
 
-            targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("#,0.##");
+            //myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
+
+            //targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("#,0.##");
             resetForm();
         }
         
@@ -80,14 +85,17 @@ namespace HomeFree_Form
             Double.TryParse(extraPayment.Text, out extra);
             Double.TryParse(payment.Text, out monthly);
 
-            myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
-            double interest = myCalculator.TotalMoneySpentOnLoan();
+            MyCalculator = new Calculator(new TotalInterest(new PayoffModel(princ, rate, years, extra, monthly)));
+            totalMoneyPaid.Text = MyCalculator.run().ToString("#,0.##");
+
+            //myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
+            //double interest = myCalculator.TotalMoneySpentOnLoan();
 
             //totalInterestPaid.Text = interest.ToString("0.##");
-            interest += princ;
-            totalMoneyPaid.Text = interest.ToString("#,0.##");
-            monthsSaved.Text = myCalculator.FindMonthsSavedAfterExtraPayment().ToString("#,0.##");
-            totalInterestPaid.Text = myCalculator.FindMoneySavedAfterExtraPayment().ToString("#,0.##");
+            //interest += princ;
+            //totalMoneyPaid.Text = interest.ToString("#,0.##");
+            //monthsSaved.Text = myCalculator.FindMonthsSavedAfterExtraPayment().ToString("#,0.##");
+            //totalInterestPaid.Text = myCalculator.FindMoneySavedAfterExtraPayment().ToString("#,0.##");
         }
 
         /// <summary>

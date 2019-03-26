@@ -21,14 +21,23 @@ namespace LoanCalculator
         LoanObjectModel loanObj;
         LoanObjectModel loanObj1;
 
-        public Calculator()
+
+        public Calculator(ICalculation algo)
         {
-            loan = new Loan();
-            howMuchHouse = new HowMuchHouse();
-            loanPayOff = new LoanPayOff();
-            loanObj = new LoanObjectModel();
-            loanObj1 = new LoanObjectModel();
-            profile = new ProfileModel();
+            //loan = new Loan();
+            //howMuchHouse = new HowMuchHouse();
+            //loanPayOff = new LoanPayOff();
+            //loanObj = new LoanObjectModel();
+            //loanObj1 = new LoanObjectModel();
+            //profile = new ProfileModel();
+            CalculationAlgo = algo;
+        }
+
+        public ICalculation CalculationAlgo { get; }
+        public IHasMortgage Mortgage { get; }
+
+        public double run() {
+            return CalculationAlgo.Algorithm();
         }
 
         public int SetMonths(int years)
