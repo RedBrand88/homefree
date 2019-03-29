@@ -33,7 +33,7 @@ namespace HomeFree_Form
             Double.TryParse(insuranceUtilities.Text, out insurance);
 
             MyCalculator = new Calculator(new MortgagePayment(new MortgageModel(princ, rate, years, down, insurance)));
-            monthlyPayment.Text = MyCalculator.run().ToString("#,0.##");
+            monthlyPayment.Text = MyCalculator.run().ToString("#,0.00");
 
             //myCalculator.SetLoanObject(down, princ, rate, years, insurance);
 
@@ -60,7 +60,7 @@ namespace HomeFree_Form
             int.TryParse(creditScore.Text, out credit);
 
             MyCalculator = new Calculator(new HowMuch(new HowMuchModel(budget1)));
-            targetHousePrice.Text = MyCalculator.run().ToString("#,0.##");
+            targetHousePrice.Text = MyCalculator.run().ToString("#,0.00");
             //myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
 
             //targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("#,0.##");
@@ -85,7 +85,7 @@ namespace HomeFree_Form
             Double.TryParse(payment.Text, out monthly);
 
             MyCalculator = new Calculator(new TotalInterest(new PayoffModel(princ, rate, years, extra, monthly)));
-            totalMoneyPaid.Text = MyCalculator.run().ToString("#,0.##");
+            totalMoneyPaid.Text = MyCalculator.run().ToString("#,0.00");
 
             //myCalculator.SetLoanObject(princ, rate, years, extra, monthly);
             //double interest = myCalculator.TotalMoneySpentOnLoan();
