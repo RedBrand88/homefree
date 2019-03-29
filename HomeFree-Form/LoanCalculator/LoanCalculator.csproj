@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HowMuch.cs" />
+    <Compile Include="HowMuchModel.cs" />
     <Compile Include="ICalculation.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="ICalculator.cs" />

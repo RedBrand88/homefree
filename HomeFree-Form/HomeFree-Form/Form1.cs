@@ -59,9 +59,8 @@ namespace HomeFree_Form
             Double.TryParse(preparedDownPayment.Text, out down);
             int.TryParse(creditScore.Text, out credit);
 
-            MyCalculator = new Calculator(new HowMuch(new HowMuchModel()));
+            MyCalculator = new Calculator(new HowMuch(new HowMuchModel(budget1)));
             targetHousePrice.Text = MyCalculator.run().ToString("#,0.##");
-
             //myCalculator.SetProfileObject(income, bonus, budget1, down, credit);
 
             //targetHousePrice.Text = myCalculator.HowMuchHouseCanIAfford().ToString("#,0.##");

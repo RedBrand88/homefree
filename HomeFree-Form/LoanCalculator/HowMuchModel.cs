@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace LoanCalculator {
     public class HowMuchModel : IHasMortgage, IHasBudget {
 
-        public HowMuchModel() {
-
+        public HowMuchModel(double bud) {
+            Budget = bud;
         }
 
         public double Principle { get; set; }

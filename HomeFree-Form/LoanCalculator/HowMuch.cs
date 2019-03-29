@@ -14,12 +14,13 @@ namespace LoanCalculator {
             double baseRatioMinusOne = baseRatio - 1;
             baseRatio *= Model.Rate;
             baseRatio /= baseRatioMinusOne;
-            Model.Budget = Model.MonthlyPayment / baseRatio;
-            return Model.Budget;
+            Model.AffordablePrice = Model.Budget / baseRatio;
+            return Model.AffordablePrice;
         }
 
+        //assumes a 5% rate 30 year loan
         public void Helper() {
-            Model.Rate = (5 / 100) / 12;
+            Model.Rate = 5.0 / 100 / 12;
             Model.Months = 30 * 12;
         }
     }
