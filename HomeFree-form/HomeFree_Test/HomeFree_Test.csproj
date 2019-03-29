@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculation_Tests.cs" />
+    <Compile Include="HowMuch_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TotalInterest_Tests.cs" />
   </ItemGroup>
